@@ -1,0 +1,33 @@
+# Rust
+target/
+
+# Node
+node_modules/
+dist/
+
+# Environment variables
+.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store# Rust
+target/
+
+# Node
+node_modules/
+dist/
+
+# Environment variables
+.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
