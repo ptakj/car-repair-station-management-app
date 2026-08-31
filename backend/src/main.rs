@@ -1,5 +1,6 @@
-use axum::{routing::get, Json, Router};
+use axum::{http::HeaderValue, routing::get, Json, Router};
 use serde::Serialize;
+use tower_http::cors::CorsLayer;
 
 #[derive(Serialize)]
 struct HealthResponse {
@@ -16,8 +17,12 @@ async fn health() -> Json<HealthResponse> {
 
 #[tokio::main]
 async fn main() {
+    let cors = CorsLayer::new()
+        .allow_origin(HeaderValue::from_static("http://localhost:5173"));
+
     let app = Router::new()
-        .route("/api/health", get(health));
+        .route("/api/health", get(health))
+        .layer(cors);
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
         .await
